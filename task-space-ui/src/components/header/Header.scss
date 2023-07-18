@@ -1,0 +1,105 @@
+.header {
+    background-color: rgb(29, 87, 87);
+    color: white;
+    padding: 7px;
+
+    @media only screen and (max-width: 600px) {
+        .header-pc {
+            display: none;
+        }
+
+        .header-mobile {
+            display: flex;
+            flex-direction: column;
+        }
+      
+    }
+}
+
+
+
+.header-pc {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .left {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .logo-div {
+        margin-right: 15px;
+        margin-left: 15px;
+
+        .header-logo {
+            height: 45px;
+        }
+    }
+
+    .link-list {
+        display: flex;
+        flex-direction: row;
+
+
+        .links {
+            margin-right: 7px;
+        }
+    }
+
+}
+
+.header-mobile {
+    display: none;
+
+    .mobile-nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+
+        .logo-div {
+            margin-left: 25px;
+            margin-top: 2px;
+            margin-bottom: 2px;
+
+            .header-logo {
+                height: 40px;
+            }
+        }
+
+        .right {
+            .mobile-menu {
+                cursor: pointer;
+            }
+        }
+
+
+
+    }
+
+    .mobile-links {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 10px;
+        margin-right: 10px;
+
+        .links{
+            margin-bottom: 3px;
+        }
+    }
+
+
+}
+
+.user-options{
+    height: 100px;
+    width: 200px;
+    position: relative;
+    background-color: gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 10px;
+}

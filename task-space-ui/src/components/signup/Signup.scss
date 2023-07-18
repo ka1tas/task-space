@@ -1,0 +1,49 @@
+.signup-class {
+
+
+
+    .signup-form {
+
+        .form-grid {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .signup-field {
+                margin-top: 10px;
+            }
+
+            .signup-button {
+                margin-top: 20px;
+            }
+
+            .signup-label {
+                font-size: 35px;
+                margin-top: 25px;
+                margin-bottom: 15px;
+                margin-left: 25%;
+
+            }
+
+
+        }
+
+        .form-grid-2 {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            .signup-field-2 {
+                margin-right: 7px;
+            }
+
+            .gender-select{
+                margin-top: 10px;
+            }
+        }
+    }
+
+    .input-warning{
+        border: 1px solid red;
+    }
+}

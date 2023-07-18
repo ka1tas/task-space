@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: taskspace-user-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/taskspaceusersdb
+    username: root
+    password: root
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+     ddl-auto: update
+    show-sql: true
+server:
+  port: 8000
+

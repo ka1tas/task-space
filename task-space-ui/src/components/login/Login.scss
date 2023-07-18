@@ -1,0 +1,30 @@
+.login-class{
+
+ 
+
+    .login-form{
+
+        .form-grid{
+            display: flex;
+            flex-direction:column;
+            justify-content: center;
+
+            .login-field{
+                margin-top: 10px;
+            }
+
+            .login-button{
+               margin-top: 20px;
+            }
+
+            .login-label{
+                font-size: 35px;
+                margin-top: 25px;
+                margin-bottom: 15px;
+               
+            }
+
+
+        }
+    }
+}

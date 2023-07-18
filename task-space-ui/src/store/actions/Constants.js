@@ -1,0 +1,25 @@
+//User Actions Constants
+export const SIGN_IN = "SIGN_IN";
+export const SIGN_IN_FAILURE = "SIGN_IN_FAILURE";
+export const SIGN_IN_SUCCESS = "SIGN_IN_SUCCESS";
+
+export const LOG_OUT = "LOG_OUT";
+
+
+export const SIGN_UP = "SIGN_UP";
+export const SIGN_UP_FAILURE = "SIGN_UP_FAILURE";
+export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
+
+
+export const FETCH_ROLES = "FETCH_ROLES";
+export const FETCH_ROLES_FAILURE = "FETCH_ROLES_FAILURE";
+export const FETCH_ROLES_SUCCESS = "FETCH_ROLES_SUCCESS";
+
+export const FETCH_LANGUAGES = "FETCH_LANGUAGES";
+export const FETCH_LANGUAGES_FAILURE = "FETCH_LANGUAGES_FAILURE";
+export const FETCH_LANGUAGES_SUCCESS = "FETCH_LANGUAGES_SUCCESS";
+
+export const CLEAR_SIGNUP= "CLEAR_SIGNUP";
+export const ACTIVATE_LOADING = "ACTIVATE_LOADING";
+export const STOP_LOADING = "STOP_LOADING";
+
