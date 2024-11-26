@@ -28,7 +28,7 @@ public class UserController {
                     HttpStatus.CREATED);
 
         } catch (Exception e) {
-            return new ResponseEntity<String>("{ \"message\": \"" + e.getMessage() + "\"}", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("{ \"errorMessage\": \"" + e.getMessage() + "\"}", HttpStatus.UNAUTHORIZED);
         }
     }
 

@@ -81,5 +81,3 @@ export const clearSignup = () => {
         type: Constants.CLEAR_SIGNUP,
     }
 }
-
-

@@ -7,17 +7,46 @@ import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import MenuItem from '@mui/material/MenuItem';
 import Alert from '@mui/material/Alert';
 import moment from 'moment';
+import { Typography } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
-import {  clearSignup, signUp } from '../../store/actions/UserAuthActions';
+import { Link, useNavigate } from 'react-router-dom';
+import { clearSignup, signUp } from '../../store/actions/UserAuthActions';
 
 import './Signup.scss';
 
 function Signup() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const initialValues = { userName: "", firstName: "", lastName: "", email: "", dateOfBirth: "", gender: "", password: "", confirmpassword: "" };
   const [signupFormValue, setSignupFormValue] = useState(initialValues);
   const [formError, setFormErrors] = useState({});
-  const [isFormSubmitted , setIsFormSubmitted] = useState(false);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
+
+  let user = useSelector(state => state.user);
+  let signupStatus = useSelector(state => state.user.signupStatus);
+  let errorMessage = useSelector(state => state.user?.errorMessage);
+
+  useEffect(() => {
+    let auth = user.authStatus;
+    if (auth) {
+      navigate("/")
+    } else if (signupStatus) {
+      dispatch(clearSignup());
+      navigate("/login")
+    }
+  }, [])
+
+
+  useEffect(() => {
+    if (signupStatus) {
+
+      setTimeout(() => {
+        navigate("/login")
+      }, 5000);
+    }
+  }, [signupStatus])
 
   const genders = [
     { value: 'male', label: 'Male' },
@@ -26,7 +55,7 @@ function Signup() {
   ];
 
   useEffect(() => {
-    if(isFormSubmitted && Object.keys(formError).length ==0){
+    if (isFormSubmitted && Object.keys(formError).length == 0) {
       console.log("No Error from submitted")
       dispatch(signUp(signupFormValue));
     }
@@ -61,7 +90,7 @@ function Signup() {
     }
     if (!email) {
       errors.email = "The email is required!";
-    } else if(!emailRegex.test(email)){
+    } else if (!emailRegex.test(email)) {
       errors.email = "The email is not valid!";
     }
     if (!dateOfBirth) {
@@ -72,18 +101,18 @@ function Signup() {
     if (!gender) {
       errors.gender = "The gender is required!";
     }
-    if (!password ) {
+    if (!password) {
       errors.password = "Password is required!";
-    } else if (password.length < 5){
+    } else if (password.length < 5) {
       errors.password = "Password should be more than 4 letters!";
     }
-    if(!confirmpassword){
+    if (!confirmpassword) {
       errors.confirmpassword = "Confirm password is required!";
     }
     if (password !== confirmpassword) {
       errors.password = "Password and confirm password didnot match";
       errors.confirmpassword = "Password and confirm password didnot match";
-    } 
+    }
     setFormErrors(errors)
   }
 
@@ -99,6 +128,20 @@ function Signup() {
             </Grid>
             <Grid className='form-grid' item xs={4}>
               <span className='signup-label'> <PersonAddAltIcon sx={{ fontSize: 45 }} /> Sign Up</span>
+
+              {(errorMessage) &&
+                <Typography className="text-red-500" component="h3" variant="h7">
+                  {errorMessage}
+                </Typography>
+              }
+
+
+              {(signupStatus) &&
+                <Typography className="text-green-500" component="h3" variant="h7">
+                  Registration successful, You will be redirected to the login page in 5 sec.
+                </Typography>
+              }
+
 
               <TextField className="signup-field" label="Create Username"
                 name="userName" variant="filled" fullWidth
@@ -193,6 +236,15 @@ function Signup() {
               {!!formError.confirmpassword && <Alert severity='error'> {formError.confirmpassword}</Alert>}
 
               <Button className="signup-button" type="submit" variant='contained'>Submit</Button>
+
+              <Grid container justifyContent="flex-end">
+                <Grid item>
+                  <Link to="/login" className="text-blue-500" variant="body2">
+                    Already have an account? Sign in
+                  </Link>
+                </Grid>
+              </Grid>
+
             </Grid>
             <Grid item xs={4}>
             </Grid>

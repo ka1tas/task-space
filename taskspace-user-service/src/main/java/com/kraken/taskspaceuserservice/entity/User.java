@@ -41,6 +41,9 @@ public class User implements UserDetails {
     @NotNull
     private String password;
 
+    @Lob
+    private byte[] userImage;
+
     @Enumerated(value = EnumType.STRING)
     private Role role;
 

@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Alert from '@mui/material/Alert';
-import { useSelector, useDispatch } from 'react-redux';
-import {  clearSignup, logIn } from '../../store/actions/UserAuthActions';
+import { useNavigate } from 'react-router-dom';
+import { clearSignup, logIn } from '../../store/actions/UserAuthActions';
+import { Typography } from '@mui/material';
 
 import './Login.scss';
 
 function Login() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  let user = useSelector(state => state.user);
+  let signupStatus = useSelector(state => state.user.signupStatus);
+  let authStatus = useSelector(state => state.user.authStatus);
   const initialValues = { userName: "", password: "" };
   const [loginFormValue, setLoginFormValue] = useState(initialValues);
   const [formError, setFormErrors] = useState({});
@@ -19,11 +26,27 @@ function Login() {
 
   useEffect(() => {
     if (isFormSubmitted && Object.keys(formError).length == 0) {
-      console.log("No Error from submitted")
       dispatch(logIn(loginFormValue));
     }
 
   }, [formError])
+
+
+
+  useEffect(() => {
+    let auth = (user.authStatus);
+    if (auth) {
+      sessionStorage.setItem("JWT_TOKEN", "Bearer " + user.token);
+      navigate("/")
+    }
+  }, [user])
+
+  useEffect(() => {
+   if (signupStatus) {
+      dispatch(clearSignup());
+    }
+  }, [])
+
 
 
   const handelFormInput = (e) => {
@@ -65,6 +88,12 @@ function Login() {
             </Grid>
             <Grid className='form-grid' item xs={4}>
               <span className='login-label'> <AccountCircleIcon sx={{ fontSize: 45 }} /> Log In</span>
+
+              {(authStatus === false) &&
+                <Typography className="text-red-500" component="h3" variant="h6">
+                  Username or Password is incorrect.
+                </Typography>
+              }
 
               <TextField className="login-field" label="Username"
                 name='userName' type='text' variant="filled" fullWidth

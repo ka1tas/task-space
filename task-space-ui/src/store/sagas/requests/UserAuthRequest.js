@@ -4,7 +4,7 @@ import axios from "axios";
 export const logIn = (action) => {
     let url = "http://localhost:8000/api/v1/user/login";
     return axios.post(url, action.payload)
-        .then((res) => res.data)
+        .then((res) => res)
         .catch((err) => { throw err });
 }
 
@@ -15,7 +15,6 @@ export const signUp = (action) => {
         .then((res) => res.data)
         .catch((err) => { throw err });
 }
-
 
 
 

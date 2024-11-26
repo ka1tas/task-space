@@ -1,6 +1,7 @@
 package com.kraken.taskspaceuserservice.dto;
 
 import com.kraken.taskspaceuserservice.entity.Role;
+import jakarta.persistence.Lob;
 import lombok.*;
 
 import java.util.Date;
@@ -19,4 +20,6 @@ public class UserResponse {
     private String gender;
     private Date dateOfBirth;
     private Role role;
+
+
 }

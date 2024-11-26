@@ -1,8 +1,8 @@
 import * as Constants from '../actions/Constants';
 
 const initialState = {
-    user: null, authStatus: null, 
-    errorMessage: "", signupStatus: false, emailExist: false
+    user: null, authStatus: null,
+    errorMessage: "", signupStatus: false
 };
 
 
@@ -13,13 +13,13 @@ export default (state = initialState, action) => {
             return { ...state, ...action.payload }
         }
         case Constants.SIGN_UP_SUCCESS: {
-            return { ...state, ...action.payload, errorMessage: "" }
+            return { ...state, errorMessage: "", signupStatus: true }
         }
         case Constants.SIGN_UP_FAILURE: {
-            return { ...state, errorMessage: action.payload, signupStatus: false, emailExist: false }
+            return { ...state, errorMessage: action.payload, signupStatus: false }
         }
         case Constants.CLEAR_SIGNUP: {
-            return { ...state, errorMessage: "", signupStatus: false, emailExist: false }
+            return { ...state, errorMessage: "", signupStatus: false }
         }
         case Constants.LOG_OUT: {
             return { ...initialState }

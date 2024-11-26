@@ -4,6 +4,7 @@ import AuthenticatedRoute from "./AuthenticatedRoute";
 import Login from '../components/login/Login';
 import Signup from '../components/signup/Signup';
 import Header from '../components/header/Header';
+import Profile from '../components/profile/Profile';
 import NotFoundPage from "../components/common/NotFoundPage";
 import Dashboard from '../components/dashboard/Dashboard';
 import Home from '../components/home/Home';
@@ -23,6 +24,11 @@ const AppRouter = () => (
             <Route path="/dashboard" element={
                 <AuthenticatedRoute>
                     <Dashboard />
+                </AuthenticatedRoute>
+            } />
+            <Route path="/profile" element={
+                <AuthenticatedRoute>
+                    <Profile />
                 </AuthenticatedRoute>
             } />
             <Route path='*' element={<NotFoundPage />} />
